@@ -4,6 +4,8 @@ project(Timer)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
+include(/home/mlyko/sesja2021.1/hithub/professional/cpptest/integration/cmake/cpptest-project.cmake)
+
 add_executable(timer
  clock.c
  driver.c

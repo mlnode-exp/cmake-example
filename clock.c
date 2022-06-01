@@ -1,6 +1,7 @@
 
 /*
  * Clock related functions
+ * -----------------------------
  */
 #include <stdio.h>
 #include "clock.h"

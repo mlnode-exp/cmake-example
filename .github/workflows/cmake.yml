@@ -37,9 +37,10 @@ jobs:
     # Runs code analysis with C/C++test.
     - name: Run C/C++test
       # Use the 'run-cpptest-action' GitHub action.
-      uses: parasoft/run-cpptest-action@1.0.1
+      uses: parasoft/run-cpptest-action@2.0.0
       # Optional parameters for 'run-cpptest-action'.
       with:
+        installDir: d:/Apps/dtp/latest/x64/cpptest 
         # For CMake-based projects, use a compile_commands.json file as the input for analysis. 
         input: build/compile_commands.json
         # Uncomment if you are using C/C++test 2020.2 to generate a SARIF report:

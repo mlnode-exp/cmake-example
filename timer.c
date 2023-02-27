@@ -2,7 +2,6 @@
 /*
  * Timer class, stores timer records
  */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,7 +10,6 @@
 #include "consts.h"
 #include "inout.h"
 #include "timer.h"
-
 
 static struct timer_record* timer_records[BUF_SIZE];
 const int max_records = BUF_SIZE;
@@ -113,7 +111,7 @@ void delete_timer_record(int idx)
     /* fill in the holes */
     for (i = idx-1; i < curr_index; i++)
     {
-        if (0 == timer_records[i]) {
+        if ( 0==timer_records[i] ) {
             break;
         } else {
             timer_records[i] = timer_records[i+1];
@@ -133,7 +131,7 @@ void format_timer_record(int idx, char* buf)
     strftime(start, BUF_SIZE, "%I:%M %p", localtime(&tr->starttime));
     strftime(end, BUF_SIZE, "%I:%M %p", localtime(&tr->endtime));
 
-    if (tr) {
+    if ( tr )  {
         sprintf(buf, "%d\t%s\t%s\t%d\n", idx+1, start, end, tr->channel);
     }
     

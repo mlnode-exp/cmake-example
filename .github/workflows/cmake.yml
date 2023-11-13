@@ -52,7 +52,7 @@ jobs:
         # Identifier of a compiler configuration. Ensure you specify the configuration that matches your compiler.
         compilerConfig: gcc_9-64
         # Test configuration to be used for code analysis.
-        testConfig: builtin://MISRA C 2012 
+        testConfig: builtin://Flow Analysis Standard
         # Output folder for reports from code analysis.
         reportDir: reports2
         # Format of reports from code analysis.

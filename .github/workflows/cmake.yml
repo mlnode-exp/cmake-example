@@ -36,19 +36,12 @@ jobs:
 
     # Runs code analysis with C/C++test.
     - name: Run C/C++test
-      # Use the 'run-cpptest-action' GitHub action.
-      uses: parasoft/run-cpptest-action@2.0.0
-      # Optional parameters for 'run-cpptest-action'.
+      uses: parasoft/run-cpptest-action@2.0.1
       with:
-        installDir: d:/Apps/dtp/latest/x64/cpptest 
-        # For CMake-based projects, use a compile_commands.json file as the input for analysis. 
-        # input: build/compile_commands.json
-        input: build/Timer.sln
-        compilerConfig: vc_14_2-64
-        # Uncomment if you are using C/C++test 2020.2 to generate a SARIF report:
-        # reportFormat: xml,html,custom
-        # additionalParams: '-property report.custom.extension=sarif -property report.custom.xsl.file=${PARASOFT_SARIF_XSL}'
-
+        input: build/compile_commands.json
+        testConfig: 'builtin://Recommended Rules'
+        compilerConfig: 'gcc_9-64'
+    
     # Uploads analysis results in the SARIF format, so that they are displayed as GitHub code scanning alerts.
     - name: Upload results (SARIF)
       if: always()
@@ -59,7 +52,7 @@ jobs:
     # Uploads an archive that includes all report files (.xml, .html, .sarif).
     - name: Archive reports
       if: always()
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: CpptestReports
         path: reports/*.*

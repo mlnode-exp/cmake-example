@@ -138,6 +138,9 @@ void format_timer_record(int idx, char* buf)
     if (a) {
         sprintf(buf, "AAA");
     }
+    if (a) {
+        sprintf(buf, "AAA");
+    }
     
 }
 

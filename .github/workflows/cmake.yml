@@ -49,7 +49,7 @@ jobs:
         installDir: 'c:/Apps/dtp/latest/x64/cpptest'
         compilerConfig: gcc_7-64
         testConfig: 'builtin://MISRA C 2023 (MISRA C 2012)'
-        reportFormat: xml,html,custom
+        reportFormat: xml,html,sarif,pdf
         additionalParams: '-workspace C:/tmp/2023.2-workspace'
       #   reportFormat: xml,html,custom
       #   additionalParams: ''

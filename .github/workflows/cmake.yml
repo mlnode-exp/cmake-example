@@ -46,7 +46,7 @@ jobs:
       uses: parasoft/run-cpptest-action@2.0.1
       # Uncomment if you are using C/C++test 2020.2 to generate a SARIF report:
       with:
-        installDir: '/cygdrive/c/Apps/dtp/latest/x64/cpptest'
+        installDir: 'c:/Apps/dtp/latest/x64/cpptest'
         compilerConfig: gcc_7-64
         testConfig: 'builtin://MISRA C 2023 (MISRA C 2012)'
         reportFormat: xml,html,custom

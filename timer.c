@@ -138,10 +138,13 @@ void format_timer_record(int idx, char* buf)
     if ( tr )  {
         sprintf(buf, "%d\t%s\t%s\t%d\n", idx+1, start, end, tr->channel);
     }
-//    int a = 0;
-//    if (a) {
-//        sprintf(buf, "AAA");
-//    }
+    int a = 0;
+    if (a) {
+        sprintf(buf, "AAA");
+    }
+    if (a) {
+        sprintf(buf, "BBB");
+    }
     
 }
 

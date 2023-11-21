@@ -75,6 +75,6 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: CpptestReports
-        path: 
+        path: |
           reports/*
           .coverage/*

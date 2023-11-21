@@ -76,5 +76,5 @@ jobs:
       with:
         name: CpptestReports
         path: 
-          reports/**
-          .coverage/**
+          reports/*
+          .coverage/*

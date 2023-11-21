@@ -40,13 +40,25 @@ jobs:
     - name: Build project
       run: cpptesttrace make clean all
 
+    - name: CMake for coverage
+      run: cmake -DCPPTEST_COVERAGE=ON -DCPPTEST_HOME=$CPPTEST_HOME -S . -B build
+
+    - name: CMake build
+      run: cmake --build build
+
+    - name: Run app
+      run: build/timer
+
+    - name: Compute coverage
+      run: cmake --build build --target cpptestcov-compute
+      
     # Runs code analysis with C/C++test.
     - name: Run C/C++test
       # Use the 'run-cpptest-action' GitHub action.
       uses: parasoft/run-cpptest-action@2.0.1
       # Uncomment if you are using C/C++test 2020.2 to generate a SARIF report:
       with:
-        compilerConfig: gcc_7-64
+        compilerConfig: gcc_9-64
       #   reportFormat: xml,html,custom
       #   additionalParams: ''
 
@@ -63,4 +75,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: CpptestReports
-        path: reports/*.*
+        path: reports/*.*, .coverage/*.*

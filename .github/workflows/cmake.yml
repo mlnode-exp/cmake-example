@@ -36,8 +36,11 @@ jobs:
     
     # Builds your Make project using 'cpptesttrace' to collect input data for code analysis.
     # Be sure 'cpptesttrace' is available on $PATH.
-    - name: Build project
-      run: cpptesttrace make clean all
+    - name: Cmake prepare
+      run: cmake -S . -B build
+    
+    - name: Trace build
+      run: cpptesttrace cmake --build build
 
     # Runs code analysis with C/C++test.
     - name: Run C/C++test
@@ -45,6 +48,7 @@ jobs:
       with:
         # C/C++test workspace will be created in '../workspace'.
         # C/C++test will create a new project based on the provided .bdf file.
+        input: 'build/cpptestscan.bdf'
         additionalParams: '-property report.format=sarif'
         commandLinePattern: '${cpptestcli} -data ../workspace -config "${testConfig}" -report "${reportDir}" -bdf "${input}" ${additionalParams}'    
 

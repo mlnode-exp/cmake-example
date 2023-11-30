@@ -49,7 +49,7 @@ jobs:
         # C/C++test workspace will be created in '../workspace'.
         # C/C++test will create a new project based on the provided .bdf file.
         input: 'build/cpptestscan.bdf'
-        additionalParams: '-property report.format=sarif'
+        additionalParams: '-property report.format=sarif -property bdf.import.compiler.family=gcc_9-64'
         commandLinePattern: '${cpptestcli} -data ../workspace -config "${testConfig}" -report "${reportDir}" -bdf "${input}" ${additionalParams}'    
 
     # Uploads analysis results in the SARIF format, so that they are displayed as GitHub code scanning alerts.

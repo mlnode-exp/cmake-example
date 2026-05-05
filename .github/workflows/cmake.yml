@@ -37,32 +37,21 @@ jobs:
     # Builds your Make project using 'cpptesttrace' to collect input data for code analysis.
     # Be sure 'cpptesttrace' is available on $PATH.
     - name: Cmake prepare
-      run: cmake -S . -B build
+      run: cmake -DCPPTEST_COVERAGE=ON -DCPPTEST_HOME=$CPPTEST_HOME -S . -B build
     
     - name: Trace build
-      run: cpptesttrace cmake --build build
+      run: cmake --build build
+      
+    - name: Run application
+      run: build/timer
 
-    # Runs code analysis with C/C++test.
-    - name: Run C/C++test
-      uses: parasoft/run-cpptest-action@2.0.1
-      with:
-        # C/C++test workspace will be created in '../workspace'.
-        # C/C++test will create a new project based on the provided .bdf file.
-        input: 'build/cpptestscan.bdf'
-        additionalParams: '-property report.format=sarif,html -property bdf.import.compiler.family=gcc_9-64'
-        commandLinePattern: '${cpptestcli} -data ../workspace -config "${testConfig}" -report "${reportDir}" -bdf "${input}" ${additionalParams}'    
-
-    # Uploads analysis results in the SARIF format, so that they are displayed as GitHub code scanning alerts.
-    - name: Upload results (SARIF)
-      if: always()
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: reports/report.sarif
-    
+    - name: Generate coverage report
+      run: cmake --build build --target cpptest_coverage_report
+      
     # Uploads an archive that includes all report files (.xml, .html, .sarif).
     - name: Archive reports
       if: always()
       uses: actions/upload-artifact@v3
       with:
         name: CpptestReports
-        path: reports/*.*
+        path: build/cpptest-coverage/Timer/reports/*.*
